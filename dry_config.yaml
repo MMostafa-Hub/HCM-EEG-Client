@@ -24,4 +24,3 @@ preprocessing_pipeline:
   - high_pass: 0.1
   - band_pass: [0.1, 1]
   - notch: 50
-

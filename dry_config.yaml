@@ -18,7 +18,7 @@ sfreq: 4
 timeout: 10
 
 # Define stages of the pipeline
-# (low_pass, high_pass, band_pass, notch)
+# (low_pass, high_pass, band_pass, band_stop)
 preprocessing_pipeline:
   - low_pass: 1
   - high_pass: 0.1

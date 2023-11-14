@@ -1,4 +1,5 @@
 from configuration_manager.yaml import YamlConfigurationManager
+from annotator.keyboard_annotator import KeyboardAnnotator
 from pipeline.pipeline_builder import PipelineBuilder
 from producer.csv import CSVProducer
 from connector.lsl import LSL
@@ -32,7 +33,7 @@ def main(config_path: str, output_path: str):
     eeg_array = np.array([], dtype=np.float64)
 
     with lsl_client.connect() as client:
-        # Todo: Start Annotation Thread
+        annotator = KeyboardAnnotator(config["keyboard_mapping"])
         try:
             while True:
                 # getting the data from lsl server
@@ -40,13 +41,19 @@ def main(config_path: str, output_path: str):
 
                 # apply the preprocessing pipeline
                 epoch = preprocessing_pipeline(epoch)
-
+                epoch.get_annotations_per_epoch()
+                
                 # Todo: Apply visualization pipeline
                 # append the preprocessed data to the eeg array
                 eeg_array = np.append(eeg_array, epoch.get_data())
         except KeyboardInterrupt:
             # save the eeg array to a csv file
-            CSVProducer.save(eeg_array, measurement_info, output_path, annotation=None)
+            CSVProducer.save(
+                eeg_array,
+                measurement_info,
+                output_path,
+                annotation=annotator.get_annotations(),
+            )
 
 
 if __name__ == "__main__":

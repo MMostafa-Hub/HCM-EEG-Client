@@ -20,7 +20,7 @@ class KeyboardAnnotator(Annotator):
                 self.keyboard_mapping[key.lower()] = value
             else:
                 self.keyboard_mapping[getattr(Key, key.lower())] = value
-        print(self.keyboard_mapping)
+
         # Create a listener for the keyboard
         with Listener(on_press=self.on_press, on_release=self.on_release) as listener:
             listener.join()
@@ -35,11 +35,12 @@ class KeyboardAnnotator(Annotator):
             return
 
         self.last_pressed_key = key
-
         self.timer = datetime.now()
         self.onset.append(self.timer.second)
         self.description.append(self.keyboard_mapping.get(key))
-        print(self.keyboard_mapping.get(key))
+
+        # print the key press for debugging
+        print(f"Started: {self.keyboard_mapping.get(key)}")
 
     def on_release(self, key):
         # stop the listener
@@ -56,3 +57,6 @@ class KeyboardAnnotator(Annotator):
 
         # reset the last pressed key
         self.last_pressed_key = None
+
+        # print the key release for debugging
+        print(f"Stopped: {self.keyboard_mapping.get(key)}")

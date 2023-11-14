@@ -29,8 +29,8 @@ preprocessing_pipeline:
 # the keys must be the same as the ones in the
 # pynput.Keyboard.Key class
 keyboard_mapping:
-  j: "jump"
-  w: "walk"
-  r: "run"
-  s: "sit"
-  page_up: "look_up"
+  j: "jumping"
+  w: "walking"
+  r: "running"
+  s: "sitting"
+  page_up: "looking_up"

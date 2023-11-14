@@ -1,0 +1,27 @@
+# Host Name
+host_name: "eeg_stream"
+
+# Channel Names
+ch_names:
+  - "Fp1"
+  - "Fp2"
+  - "F3"
+  - "F4"
+
+# Channel Types
+ch_types: "eeg"
+
+# Sampling Frequency
+sfreq: 4
+
+# Timeout for the connection
+timeout: 10
+
+# Define stages of the pipeline
+# (low_pass, high_pass, band_pass, notch)
+preprocessing_pipeline:
+  - low_pass: 1
+  - high_pass: 0.1
+  - band_pass: [0.1, 1]
+  - notch: 50
+

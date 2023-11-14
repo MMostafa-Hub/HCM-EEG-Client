@@ -31,9 +31,10 @@ def main(config_path: str, output_path: str):
 
     # Array to store the eeg data
     eeg_array = np.array([], dtype=np.float64)
-
+    
     with lsl_client.connect() as client:
         annotator = KeyboardAnnotator(config["keyboard_mapping"])
+        # Todo: Create the visualization
         try:
             while True:
                 # getting the data from lsl server
@@ -41,9 +42,9 @@ def main(config_path: str, output_path: str):
 
                 # apply the preprocessing pipeline
                 epoch = preprocessing_pipeline(epoch)
-                epoch.get_annotations_per_epoch()
-                
-                # Todo: Apply visualization pipeline
+
+                # Todo: Update the visualization
+
                 # append the preprocessed data to the eeg array
                 eeg_array = np.append(eeg_array, epoch.get_data())
         except KeyboardInterrupt:

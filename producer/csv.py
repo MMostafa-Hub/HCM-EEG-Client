@@ -10,7 +10,7 @@ class CSVProducer(Producer):
         measurement_info: Info,
         path: str,
         annotations: Annotations = None,
-    ):
+    ) -> None:
         raw = RawArray(data, measurement_info)
         if annotations:
             raw.set_annotations(annotations)

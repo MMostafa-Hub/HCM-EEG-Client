@@ -19,6 +19,8 @@ timeout: 10
 
 # Define stages of the pipeline
 # (low_pass, high_pass, band_pass, band_stop)
+# The name of the stage must be the same as the
+# keys in the step dictionary in Pipeline Builder
 preprocessing_pipeline:
   - low_pass: [1]
   - high_pass: [0.1]

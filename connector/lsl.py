@@ -1,5 +1,4 @@
 from abc import ABC
-from typing import Self
 from pylsl import resolve_byprop
 from mne_realtime import LSLClient
 from mne.io import Info
